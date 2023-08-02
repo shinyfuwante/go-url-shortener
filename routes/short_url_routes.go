@@ -7,5 +7,8 @@ import (
 )
 
 func ShortURLRoute(router *gin.Engine) {
-	router.POST("/short_urls", controllers.CreateShortUrl())
+	router.POST("/short_urls/", controllers.CreateShortUrl())
+	router.GET("/short_urls/:short", controllers.GetAShortUrl())
+	router.GET("/short_urls/", controllers.GetAllShortUrls())
+
 }
