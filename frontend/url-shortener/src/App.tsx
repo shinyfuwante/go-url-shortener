@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import nanoid;
+import { nanoid } from "nanoid";
 import "./App.css";
 
 export type shortUrl = {
@@ -13,6 +13,7 @@ export type shortUrl = {
 function App() {
   const backendUrl = "http://localhost:8080/";
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
+  const [newShortUrl, setNewShortUrl] = useState<shortUrl>();
 
   const fetchAllShortUrls = async () => {
     const response = await fetch(backendUrl + "short_urls/");
@@ -37,7 +38,11 @@ function App() {
       </>
     );
   };
-  return <>{shortUrls.length > 0 ? topFiveShorts() : <>{shortUrls.length}</>}</>;
+
+
+  return (
+    <>{shortUrls.length > 0 ? topFiveShorts() : <>{shortUrls.length}</>}</>
+  );
 }
 
 export default App;
