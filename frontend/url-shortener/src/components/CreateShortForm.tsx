@@ -1,26 +1,48 @@
 import React from "react";
 import { shortUrl } from "../App";
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
 export const CreateShortForm = (setNewShortUrl: (arg0: shortUrl) => void) => {
-  const [newShort, setNewShort] = useState<shortUrl>();
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
   const [currDesc, setCurrDesc] = useState("");
   const handleSubmit = () => {
-
-  }
-  // need short url
-  // need full url
-  // need desc
+    if (currShort == "") {
+      setCurrShort(nanoid());
+    }
+    const newShort = {
+      short: currShort,
+      full_url: currFull,
+      description: currDesc,
+      num_clicked: 0,
+    };
+    setNewShortUrl({ ...newShort });
+  };
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="short">Short:</label>
-      <input type="text" name="short" id="short" />
+      <input
+        onChange={(e) => setCurrShort(e.target.value)}
+        type="text"
+        name="short"
+        id="short"
+      />
       <label htmlFor="full">Full Url:</label>
-      <input type="text" name="full" id="full" />
+      <input
+        onChange={(e) => setCurrFull(e.target.value)}
+        type="text"
+        name="full"
+        id="full"
+        required={true}
+      />
       <label htmlFor="desc">Description</label>
-      <input type="text" name="desc" id="desc" />
-    </div>
+      <input
+        onChange={(e) => setCurrDesc(e.target.value)}
+        type="text"
+        name="desc"
+        id="desc"
+      />
+    </form>
   );
 };

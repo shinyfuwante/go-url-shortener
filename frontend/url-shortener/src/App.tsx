@@ -3,11 +3,11 @@ import { nanoid } from "nanoid";
 import "./App.css";
 
 export type shortUrl = {
-  id: number;
-  short: string;
+  id?: number;
+  short?: string;
   full_url: string;
-  num_clicked: number;
-  description: string;
+  num_clicked?: number;
+  description?: string;
 };
 
 function App() {
