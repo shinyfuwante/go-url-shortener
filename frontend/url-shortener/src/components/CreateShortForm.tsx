@@ -3,13 +3,18 @@ import { shortUrl } from "../App";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 
-export const CreateShortForm = (setNewShortUrl: (arg0: shortUrl) => void) => {
+interface CreateShortFormProps {
+    postNewShortUrl: (arg0: shortUrl) => Promise<void>;
+}
+
+export const CreateShortForm: React.FC<CreateShortFormProps> = ({postNewShortUrl}) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
   const [currDesc, setCurrDesc] = useState("");
-  const handleSubmit = () => {
-    if (currShort == "") {
-      setCurrShort(nanoid());
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (currShort == '') {
+      setCurrShort(nanoid(10));
     }
     const newShort = {
       short: currShort,
@@ -17,7 +22,9 @@ export const CreateShortForm = (setNewShortUrl: (arg0: shortUrl) => void) => {
       description: currDesc,
       num_clicked: 0,
     };
-    setNewShortUrl({ ...newShort });
+    console.log(newShort);
+    postNewShortUrl({ ...newShort });
+    setCurrShort("");
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -43,6 +50,7 @@ export const CreateShortForm = (setNewShortUrl: (arg0: shortUrl) => void) => {
         name="desc"
         id="desc"
       />
+      <button type="submit" onSubmit={(e) => handleSubmit(e)}>Submit</button>
     </form>
   );
 };

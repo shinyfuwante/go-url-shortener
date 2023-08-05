@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
+import { CreateShortForm } from "./components/CreateShortForm";
 
 export type shortUrl = {
   id?: number;
@@ -20,6 +21,14 @@ function App() {
     const json = await response.json();
     setShortUrls(await json.data.data);
   };
+  const createNewShortUrl = async (short: shortUrl) => {
+    const response = await fetch(backendUrl + "short_urls/", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(short)
+    });
+    console.log(response)
+  }
   useEffect(() => {
     fetchAllShortUrls();
   }, []);
@@ -41,7 +50,10 @@ function App() {
 
 
   return (
-    <>{shortUrls.length > 0 ? topFiveShorts() : <>{shortUrls.length}</>}</>
+    <>
+    <CreateShortForm postNewShortUrl={createNewShortUrl}></CreateShortForm>
+    {shortUrls.length > 0 ? topFiveShorts() : <>{shortUrls.length}</>}
+    </>
   );
 }
 
