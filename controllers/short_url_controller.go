@@ -62,6 +62,7 @@ func GetAShortUrl() gin.HandlerFunc {
 		err := shortCollection.FindOne(ctx, short).Decode(&shortUrl)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Could not find desired short url", Data: map[string]interface{}{"data": err.Error()}})
+			return
 		}
 
 		shortUrl.NumClicked++
@@ -70,6 +71,7 @@ func GetAShortUrl() gin.HandlerFunc {
 		result, err := shortCollection.UpdateOne(ctx, short, update)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "error", Data: map[string]interface{}{"data": err.Error()}})
+			return
 		}
 		c.JSON(http.StatusOK, responses.ShortURLResponse{Status: http.StatusOK, Message: "Success", Data: map[string]interface{}{"data": result}})
 	}
