@@ -86,7 +86,11 @@ func GetAllShortUrls() gin.HandlerFunc {
 		var shorts []models.ShortURL
 		defer cancel()
 
-		results, err := shortCollection.Find(ctx, bson.M{})
+		options := options.Find()
+		options.SetSort(bson.D{{Key: "num_clicked", Value: -1}})
+		options.SetLimit(5)
+
+		results, err := shortCollection.Find(ctx, bson.M{}, options)
 
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "error", Data: map[string]interface{}{"data": err.Error()}})
