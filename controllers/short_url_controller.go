@@ -59,18 +59,21 @@ func GetAShortUrl() gin.HandlerFunc {
 
 		defer cancel()
 
-		err := shortCollection.FindOne(ctx, short).Decode(&shortUrl)
+		filter := bson.M{"short": short}
+		err := shortCollection.FindOne(ctx, filter).Decode(&shortUrl)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Could not find desired short url", Data: map[string]interface{}{"data": err.Error()}})
 			return
 		}
+		c.Redirect(http.StatusFound, shortUrl.FullURL)
 
 		shortUrl.NumClicked++
-		update := bson.D{{Key: "$set", Value: bson.D{{Key: "num_clicked", Value: shortUrl.NumClicked}}}}
+		// update := bson.D{{Key: "$set", Value: bson.D{{Key: "num_clicked", Value: shortUrl.NumClicked}}}}
+		update := bson.D{{"$set", bson.D{{"num_clicked", shortUrl.NumClicked}}}}
 
-		result, err := shortCollection.UpdateOne(ctx, short, update)
+		result, err := shortCollection.UpdateOne(ctx, bson.M{"short": short}, update)
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "error", Data: map[string]interface{}{"data": err.Error()}})
+			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Error when trying to update", Data: map[string]interface{}{"data": err.Error()}})
 			return
 		}
 		c.JSON(http.StatusOK, responses.ShortURLResponse{Status: http.StatusOK, Message: "Success", Data: map[string]interface{}{"data": result}})
