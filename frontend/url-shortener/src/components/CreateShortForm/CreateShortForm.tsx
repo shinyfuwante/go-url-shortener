@@ -1,19 +1,23 @@
 import React from "react";
-import { shortUrl } from "../App";
+import { FormEvent } from "react";
+import { shortUrl } from "../../App";
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import "./CreateShortForm.css";
 
 interface CreateShortFormProps {
-    postNewShortUrl: (arg0: shortUrl) => Promise<void>;
+  postNewShortUrl: (arg0: shortUrl) => Promise<void>;
 }
 
-export const CreateShortForm: React.FC<CreateShortFormProps> = ({postNewShortUrl}) => {
+export const CreateShortForm: React.FC<CreateShortFormProps> = ({
+  postNewShortUrl,
+}) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
   const [currDesc, setCurrDesc] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (currShort == '') {
+    if (currShort == "") {
       setCurrShort(nanoid(10));
     }
     const newShort = {
@@ -27,7 +31,7 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({postNewShortUrl
     setCurrShort("");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="create-short-form">
       <label htmlFor="short">Short:</label>
       <input
         onChange={(e) => setCurrShort(e.target.value)}
@@ -50,7 +54,11 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({postNewShortUrl
         name="desc"
         id="desc"
       />
-      <button type="submit" onSubmit={(e) => handleSubmit(e)}>Submit</button>
+      <button type="submit">
+        Submit
+      </button>
     </form>
   );
 };
+
+export default CreateShortForm;
