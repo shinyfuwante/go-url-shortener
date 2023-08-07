@@ -9,6 +9,4 @@
 .main-short-app {
   display: flex;
   flex-direction: column;
-  border: 2px solid lavender;
-  padding: 2em; 
 }

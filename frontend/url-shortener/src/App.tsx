@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import { CreateShortForm } from "./components/CreateShortForm";
+import { TopShortUrls } from "./components/TopShortUrls";
 
 export type shortUrl = {
   id?: number;
@@ -31,26 +32,11 @@ function App() {
     fetchAllShortUrls();
   }, []);
 
-  const topFiveShorts = () => {
-    return (
-      <>
-        {shortUrls.map((short) => (
-          <div key={short.id}>
-            {short.short}
-            -----------------
-            {short.full_url}
-            *---------------*
-          </div>
-        ))}
-      </>
-    );
-  };
-
   return (
     <div className="app-container">
       <div className="main-short-app">
         <CreateShortForm postNewShortUrl={createNewShortUrl}></CreateShortForm>
-        {shortUrls.length > 0 ? topFiveShorts() : <>{shortUrls.length}</>}
+        {shortUrls.length > 0 ? <TopShortUrls shortUrls={shortUrls}></TopShortUrls>:<></>}
       </div>
     </div>
   );

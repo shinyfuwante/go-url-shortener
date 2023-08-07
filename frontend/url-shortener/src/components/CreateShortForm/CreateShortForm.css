@@ -2,4 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.3em;
+    border: 2px solid purple;
+    padding: 0.5em;
 }
