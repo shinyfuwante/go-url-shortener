@@ -7,6 +7,7 @@ interface TopShortUrlsProps {
 }
 
 export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
+    const backendUrl = "localhost:8080/"
   return (
     <table className="top-short-url-container">
       <tr>
@@ -19,7 +20,7 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
       </tr>
       {shortUrls.map((short) => (
         <tr key={short.id}>
-          <td><a href={short.short}>{short.short}</a></td>
+          <td><a href={backendUrl+short.short}>{short.short}</a></td>
           <td><a href={short.full_url}>{short.full_url}</a></td>
           <td>{short.num_clicked}</td>
         </tr>
