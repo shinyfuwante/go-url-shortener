@@ -8,15 +8,22 @@ interface TopShortUrlsProps {
 
 export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
   return (
-    <div className="top-short-url-container">
+    <table className="top-short-url-container">
+      <tr>
+        <th colSpan="3" className="top-short-url-title">Top Urls</th>
+      </tr>
+      <tr>
+        <th>Short:</th>
+        <th>Full Url:</th>
+        <th>Times visited:</th>
+      </tr>
       {shortUrls.map((short) => (
-        <div key={short.id}>
-          {short.short}
-          -----------------
-          {short.full_url}
-          *---------------*
-        </div>
+        <tr key={short.id}>
+          <td><a href={short.short}>{short.short}</a></td>
+          <td><a href={short.full_url}>{short.full_url}</a></td>
+          <td>{short.num_clicked}</td>
+        </tr>
       ))}
-    </div>
+    </table>
   );
 };

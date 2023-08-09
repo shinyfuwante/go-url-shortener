@@ -1,3 +1,9 @@
 .top-short-url-container {
-    border: 2px solid red;
+    border: 2px solid lavender;
+    text-align: center;
+}
+
+.top-short-url-title {
+    border-bottom: 2px solid lavender;
+    text-align: center;
 }
