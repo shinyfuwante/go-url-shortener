@@ -7,16 +7,21 @@ import "./CreateShortForm.css";
 
 interface CreateShortFormProps {
   postNewShortUrl: (arg0: shortUrl) => Promise<void>;
+  setSubmitted: (arg0: boolean) => void;
+  setSubmittedShort: (arg0: shortUrl) => void;
 }
 
 export const CreateShortForm: React.FC<CreateShortFormProps> = ({
   postNewShortUrl,
+  setSubmitted,
+  setSubmittedShort
 }) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
   const [currDesc, setCurrDesc] = useState("");
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitted(true);
     if (currShort == "") {
       setCurrShort(nanoid(10));
     }
@@ -27,7 +32,8 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
       num_clicked: 0,
     };
     console.log(newShort);
-    postNewShortUrl({ ...newShort });
+    setSubmittedShort({...newShort});
+    // postNewShortUrl({ ...newShort });
     setCurrShort("");
   };
   return (

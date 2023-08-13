@@ -12,7 +12,7 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
     <table className="top-short-url-container">
       <thead>
         <tr>
-          <th colSpan="3" className="top-short-url-title">
+          <th colSpan={3} className="top-short-url-title">
             Top Urls
           </th>
         </tr>

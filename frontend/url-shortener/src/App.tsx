@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { CreateShortForm } from "./components/CreateShortForm";
 import { TopShortUrls } from "./components/TopShortUrls";
+import { SubmittedShort } from "./components/SubmittedShort";
 
 export type shortUrl = {
   id?: number;
@@ -14,6 +15,8 @@ export type shortUrl = {
 function App() {
   const backendUrl = "http://localhost:8080/";
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [submittedShort, setSubmittedShort] = useState<shortUrl>();
 
   const fetchAllShortUrls = async () => {
     const response = await fetch(backendUrl + "short_urls/");
@@ -35,8 +38,20 @@ function App() {
   return (
     <div className="app-container">
       <div className="main-short-app">
-        <CreateShortForm postNewShortUrl={createNewShortUrl}></CreateShortForm>
-        {shortUrls.length > 0 ? <TopShortUrls shortUrls={shortUrls}></TopShortUrls>:<></>}
+        {submitted ? (
+          <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>
+        ) : (
+          <CreateShortForm
+            setSubmittedShort={setSubmittedShort}
+            setSubmitted={setSubmitted}
+            postNewShortUrl={createNewShortUrl}
+          ></CreateShortForm>
+        )}
+        {shortUrls.length > 0 ? (
+          <TopShortUrls shortUrls={shortUrls}></TopShortUrls>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
