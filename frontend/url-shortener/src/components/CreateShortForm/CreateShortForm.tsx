@@ -4,6 +4,7 @@ import { shortUrl } from "../../App";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import "./CreateShortForm.css";
+import {isWebUri} from 'valid-url';
 
 interface CreateShortFormProps {
   postNewShortUrl: (arg0: shortUrl) => Promise<void>;
@@ -19,9 +20,26 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
   const [currDesc, setCurrDesc] = useState("");
+  const validateInput = async () => {
+    const errors = [];
+    if (currFull.length == 0) {
+      errors.push("fullUrl");
+    } else if (!isWebUri(currFull)) {
+      errors.push("fullUrl");
+    }
+
+    if (currShort.indexOf(' ') >= 0) {
+      errors.push("shortUrl");
+    }
+
+    return errors.length == 0;
+  }
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
+    if (!validateInput) {
+      return;
+    }
     if (currShort == "") {
       setCurrShort(nanoid(10));
     }
