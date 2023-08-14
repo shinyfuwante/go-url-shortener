@@ -28,7 +28,9 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
       errors.push("fullUrl");
     }
 
-    if (currShort.indexOf(' ') >= 0) {
+    if (currShort.length > 10) {
+      errors.push("shortUrl");
+    } else if (currShort.indexOf(' ') >= 0) {
       errors.push("shortUrl");
     }
 
