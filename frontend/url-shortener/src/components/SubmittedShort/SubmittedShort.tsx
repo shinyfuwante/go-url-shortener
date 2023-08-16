@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { shortUrl } from "../../App";
+import "./SubmittedShort.css"
 interface SubmittedShortProps {
   submittedShort: shortUrl;
 }

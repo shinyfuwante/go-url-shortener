@@ -1,0 +1,8 @@
+.submitted-short-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--background-color);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
