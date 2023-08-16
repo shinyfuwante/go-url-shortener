@@ -3,6 +3,7 @@ import "./App.css";
 import { CreateShortForm } from "./components/CreateShortForm";
 import { TopShortUrls } from "./components/TopShortUrls";
 import { SubmittedShort } from "./components/SubmittedShort";
+import { FaGithub } from "react-icons/fa";
 
 export type shortUrl = {
   id?: number;
@@ -37,22 +38,32 @@ function App() {
 
   return (
     <div className="app-container">
+      <h1 className="header">URL Shortener</h1>
       <div className="main-short-app">
-        {submitted ? (
-          <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>
-        ) : (
-          <CreateShortForm
-            setSubmittedShort={setSubmittedShort}
-            setSubmitted={setSubmitted}
-            postNewShortUrl={createNewShortUrl}
-          ></CreateShortForm>
-        )}
+        <div className="submit-short-form">
+          {submitted ? (
+            <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>
+          ) : (
+            <CreateShortForm
+              setSubmittedShort={setSubmittedShort}
+              setSubmitted={setSubmitted}
+              postNewShortUrl={createNewShortUrl}
+            ></CreateShortForm>
+          )}
+        </div>
         {shortUrls.length > 0 ? (
           <TopShortUrls shortUrls={shortUrls}></TopShortUrls>
         ) : (
           <></>
         )}
       </div>
+      <footer className="footer">
+        <a href="https://github.com/shinyfuwante">
+          <FaGithub className="github-icon" />
+          shinyfuwante
+          <img src="https://avatars.githubusercontent.com/u/102276140?v=4"></img>
+        </a>
+      </footer>
     </div>
   );
 }
