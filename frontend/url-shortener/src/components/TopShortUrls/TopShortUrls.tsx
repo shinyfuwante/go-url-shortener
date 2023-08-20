@@ -19,7 +19,7 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
         <tr className="table-titles">
           <th>Short:</th>
           <th>Full Url:</th>
-          <th>Times visited:</th>
+          <th>Times clicked:</th>
         </tr>
       </thead>
       <tbody>
