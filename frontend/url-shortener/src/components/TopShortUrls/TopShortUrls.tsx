@@ -16,7 +16,7 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
             Top Urls
           </th>
         </tr>
-        <tr>
+        <tr className="table-titles">
           <th>Short:</th>
           <th>Full Url:</th>
           <th>Times visited:</th>
@@ -24,7 +24,7 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
       </thead>
       <tbody>
         {shortUrls.map((short) => (
-          <tr key={short.id}>
+          <tr className="data-row" key={short.id}>
             <td>
               <a href={`${backendUrl}/${short.short}`}>{short.short}</a>
             </td>

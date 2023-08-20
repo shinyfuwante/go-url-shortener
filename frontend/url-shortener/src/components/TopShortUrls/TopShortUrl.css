@@ -1,6 +1,11 @@
 .top-short-url-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-spacing: 0;
   text-align: center;
-  background-color: var(--main-app-background-color);
 }
 .top-short-url-container th,
 .top-short-url-container td {
@@ -10,4 +15,19 @@
 .top-short-url-container th {
   background-color: var(--main-app-background-color);
   font-weight: bold;
+}
+
+.top-short-url-container .top-short-url-title {
+  padding-top: 10px;
+  background-color: var(--background-color);
+  text-align: left;
+}
+
+.top-short-url-container .table-titles {
+  outline: 1px solid var(--background-color);
+}
+.top-short-url-container .data-row {
+  outline: 1px solid var(--background-color);
+  margin-bottom: -1px;
+  background-color: var(--main-app-background-color);
 }
