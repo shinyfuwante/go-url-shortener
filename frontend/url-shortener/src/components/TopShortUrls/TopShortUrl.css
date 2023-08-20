@@ -1,9 +1,13 @@
 .top-short-url-container {
-    border: 2px solid lavender;
-    text-align: center;
+  text-align: center;
+  background-color: var(--main-app-background-color);
+}
+.top-short-url-container th,
+.top-short-url-container td {
+  padding: 10px;
 }
 
-.top-short-url-title {
-    border-bottom: 2px solid lavender;
-    text-align: center;
+.top-short-url-container th {
+  background-color: var(--main-app-background-color);
+  font-weight: bold;
 }

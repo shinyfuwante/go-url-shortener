@@ -19,7 +19,6 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
 }) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
-  const [currDesc, setCurrDesc] = useState("");
   const validateInput = async () => {
     const errors = [];
     if (currFull.length == 0) {
@@ -48,7 +47,7 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
     const newShort = {
       short: currShort,
       full_url: currFull,
-      description: currDesc,
+      description: "",
       num_clicked: 0,
     };
     console.log(newShort);
@@ -72,13 +71,6 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
         name="full"
         id="full"
         required={true}
-      />
-      <label htmlFor="desc">Description</label>
-      <input
-        onChange={(e) => setCurrDesc(e.target.value)}
-        type="text"
-        name="desc"
-        id="desc"
       />
       <button type="submit">
         Submit
