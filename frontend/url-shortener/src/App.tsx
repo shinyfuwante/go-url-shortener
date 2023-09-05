@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="app-container">
       <h1 className="header">URL Shortener</h1>
-      <div className="main-short-app">
+      <main className="main-short-app">
         <div className="submit-short-form">
           {submitted ? (
             <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>
@@ -56,12 +56,12 @@ function App() {
         ) : (
           <></>
         )}
-      </div>
+      </main>
       <footer className="footer">
         <a href="https://github.com/shinyfuwante">
           <FaGithub className="github-icon" />
           shinyfuwante
-          <img src="https://avatars.githubusercontent.com/u/102276140?v=4"></img>
+          <img src="https://avatars.githubusercontent.com/u/102276140?v=4" alt="Icon for github profile shinyfuwante"></img>
         </a>
       </footer>
     </div>

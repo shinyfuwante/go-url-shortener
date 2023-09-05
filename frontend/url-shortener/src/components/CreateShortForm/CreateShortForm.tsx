@@ -4,7 +4,7 @@ import { shortUrl } from "../../App";
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import "./CreateShortForm.css";
-import {isWebUri} from 'valid-url';
+import { isWebUri } from "valid-url";
 
 interface CreateShortFormProps {
   postNewShortUrl: (arg0: shortUrl) => Promise<void>;
@@ -15,7 +15,7 @@ interface CreateShortFormProps {
 export const CreateShortForm: React.FC<CreateShortFormProps> = ({
   postNewShortUrl,
   setSubmitted,
-  setSubmittedShort
+  setSubmittedShort,
 }) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
@@ -29,12 +29,12 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
 
     if (currShort.length > 10) {
       errors.push("shortUrl");
-    } else if (currShort.indexOf(' ') >= 0) {
+    } else if (currShort.indexOf(" ") >= 0) {
       errors.push("shortUrl");
     }
 
     return errors.length == 0;
-  }
+  };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
@@ -51,7 +51,7 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
       num_clicked: 0,
     };
     console.log(newShort);
-    setSubmittedShort({...newShort});
+    setSubmittedShort({ ...newShort });
     // postNewShortUrl({ ...newShort });
     setCurrShort("");
   };
@@ -59,6 +59,8 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
     <form onSubmit={handleSubmit} className="create-short-form">
       <label htmlFor="short">Short:</label>
       <input
+        aria-label="Shortened url: "
+        aria-required="true"
         onChange={(e) => setCurrShort(e.target.value)}
         type="text"
         name="short"
@@ -66,15 +68,15 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
       />
       <label htmlFor="full">Full Url:</label>
       <input
+        aria-label="Full url: "
+        aria-required="true"
         onChange={(e) => setCurrFull(e.target.value)}
         type="text"
         name="full"
         id="full"
         required={true}
       />
-      <button type="submit">
-        Submit
-      </button>
+      <button type="submit">Create Short URL</button>
     </form>
   );
 };

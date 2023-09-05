@@ -9,7 +9,7 @@ interface TopShortUrlsProps {
 export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
   const backendUrl = "http://localhost:8080";
   return (
-    <table className="top-short-url-container">
+    <table aria-label="Top Urls" className="top-short-url-container">
       <thead>
         <tr>
           <th colSpan={3} className="top-short-url-title">
