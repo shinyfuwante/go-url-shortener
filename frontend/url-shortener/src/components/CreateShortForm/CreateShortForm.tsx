@@ -52,7 +52,6 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
     };
     console.log(newShort);
     setSubmittedShort({ ...newShort });
-    // postNewShortUrl({ ...newShort });
     setCurrShort("");
   };
   return (

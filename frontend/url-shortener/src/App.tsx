@@ -17,7 +17,9 @@ function App() {
   const backendUrl = "http://localhost:8080/";
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
   const [submittedShort, setSubmittedShort] = useState<shortUrl>();
+  let submitForm;
 
   const fetchAllShortUrls = async () => {
     const response = await fetch(backendUrl + "short_urls/");
@@ -30,27 +32,37 @@ function App() {
       mode: "cors",
       body: JSON.stringify(short),
     });
-    console.log(response);
+    if (response.status == 500) {
+      setSuccess(false);
+    } else {
+      setSuccess(true);
+    }
   };
   useEffect(() => {
     fetchAllShortUrls();
   }, []);
 
+  if (submitted) {
+    if (success) {
+      submitForm = <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>;
+    } else {
+      submitForm = "error";
+    }
+  } else {
+    submitForm = (
+      <CreateShortForm
+        setSubmittedShort={setSubmittedShort}
+        setSubmitted={setSubmitted}
+        postNewShortUrl={createNewShortUrl}
+      ></CreateShortForm>
+    );
+  }
+
   return (
     <div className="app-container">
       <h1 className="header">URL Shortener</h1>
       <main className="main-short-app">
-        <div className="submit-short-form">
-          {submitted ? (
-            <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>
-          ) : (
-            <CreateShortForm
-              setSubmittedShort={setSubmittedShort}
-              setSubmitted={setSubmitted}
-              postNewShortUrl={createNewShortUrl}
-            ></CreateShortForm>
-          )}
-        </div>
+        <div className="submit-short-form">{submitForm}</div>
         {shortUrls.length > 0 ? (
           <TopShortUrls shortUrls={shortUrls}></TopShortUrls>
         ) : (
@@ -61,7 +73,10 @@ function App() {
         <a href="https://github.com/shinyfuwante">
           <FaGithub className="github-icon" />
           shinyfuwante
-          <img src="https://avatars.githubusercontent.com/u/102276140?v=4" alt="Icon for github profile shinyfuwante"></img>
+          <img
+            src="https://avatars.githubusercontent.com/u/102276140?v=4"
+            alt="Icon for github profile shinyfuwante"
+          ></img>
         </a>
       </footer>
     </div>

@@ -43,7 +43,7 @@ func CreateShortUrl() gin.HandlerFunc {
 		}}}
 		d, err := shortCollection.Find(ctx, filter)
 		if d != nil {
-			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Shortened URL already exists!", Data: map[string]interface{}{"data": err.Error()}})
+			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Shortened URL already exists!", Data: map[string]interface{}{"data": ""}})
 			return
 		}
 		result, err := shortCollection.UpdateOne(ctx, filter, update, opts)

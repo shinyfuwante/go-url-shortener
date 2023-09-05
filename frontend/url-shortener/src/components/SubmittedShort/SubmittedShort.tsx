@@ -18,7 +18,7 @@ export const SubmittedShort: React.FC<SubmittedShortProps> = ({
     <div className="submitted-short-container">
       <a href={constructedUrl}>{constructedUrl}</a>
       {copied ? (
-        <div>"Copied to Clipboard"</div>
+        <div>Copied to Clipboard!</div>
       ) : (
         <button onClick={() => copyToClipboard()}>Copy to Clipboard</button>
       )}
