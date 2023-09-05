@@ -13,7 +13,6 @@ interface CreateShortFormProps {
 }
 
 export const CreateShortForm: React.FC<CreateShortFormProps> = ({
-  postNewShortUrl,
   setSubmitted,
   setSubmittedShort,
 }) => {
