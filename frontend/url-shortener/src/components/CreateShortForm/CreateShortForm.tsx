@@ -18,61 +18,70 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
 }) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
-  const validateInput = async () => {
-    const errors = [];
-    if (currFull.length == 0) {
-      errors.push("fullUrl");
-    } else if (!isWebUri(currFull)) {
-      errors.push("fullUrl");
+  const [errorsObj, setErrorsObj] = useState<Record<string, string>>({});
+  const validateInput = (newShort: shortUrl) => {
+    const errors: Record<string, string> = {};
+    // debugger;
+    if (!newShort.full_url) {
+      errors.full_url = "Please input a url to shorten.";
+    } else if (!isWebUri(newShort.full_url)) {
+      errors.full_url = "Please input a valid url.";
     }
-
-    if (currShort.length > 10) {
-      errors.push("shortUrl");
-    } else if (currShort.indexOf(" ") >= 0) {
-      errors.push("shortUrl");
+    if (newShort.short != null) {
+      if (newShort.short.length > 10) {
+        errors.short_url =
+          "Please shorten your desired string to be less than 10 characters.";
+      } else if (newShort.short.indexOf(" ") >= 0) {
+        errors.short_url =
+          "Please remove any spaces out of your shortened url.";
+      }
     }
-
-    return errors.length == 0;
+    return errors;
   };
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
-    if (!validateInput) {
-      return;
-    }
-    if (currShort == "") {
-      setCurrShort(nanoid(10));
-    }
     const newShort = {
       short: currShort,
       full_url: currFull,
       description: "",
       num_clicked: 0,
     };
+    const errors = validateInput(newShort);
+    const errorsArray = Object.keys(errors);
+    if (errorsArray.length !== 0) {
+      setErrorsObj(errors);
+      return;
+    } 
+    if (currShort == "") {
+      setCurrShort(nanoid(10));
+      newShort.short = currShort;
+    }
     console.log(newShort);
     setSubmittedShort({ ...newShort });
     setCurrShort("");
+    setSubmitted(true);
   };
   return (
     <form onSubmit={handleSubmit} className="create-short-form">
       <label htmlFor="short">Short:</label>
+      {errorsObj.short_url && <p className="error">{errorsObj.short_url}</p>}
       <input
         aria-label="Shortened url: "
-        aria-required="true"
         onChange={(e) => setCurrShort(e.target.value)}
         type="text"
         name="short"
         id="short"
       />
       <label htmlFor="full">Full Url:</label>
+      {errorsObj.full_url && <p className="error">{errorsObj.full_url}</p>}
       <input
         aria-label="Full url: "
-        aria-required="true"
+        // aria-required="true"
         onChange={(e) => setCurrFull(e.target.value)}
         type="text"
         name="full"
         id="full"
-        required={true}
+        // required={true}
       />
       <button type="submit">Create Short URL</button>
     </form>
