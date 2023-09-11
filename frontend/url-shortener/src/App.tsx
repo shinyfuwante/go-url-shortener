@@ -32,11 +32,7 @@ function App() {
       mode: "cors",
       body: JSON.stringify(short),
     });
-    if (response.status == 500) {
-      setSuccess(false);
-    } else {
-      setSuccess(true);
-    }
+    setSuccess(response.status == 201);
   };
   useEffect(() => {
     fetchAllShortUrls();
@@ -46,7 +42,7 @@ function App() {
     if (success) {
       submitForm = <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>;
     } else {
-      submitForm = "error";
+      submitForm = "Something went wrong with your shortened url. Please try again."
     }
   } else {
     submitForm = (

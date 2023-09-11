@@ -76,12 +76,12 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
       {errorsObj.full_url && <p className="error">{errorsObj.full_url}</p>}
       <input
         aria-label="Full url: "
-        // aria-required="true"
+        aria-required="true"
         onChange={(e) => setCurrFull(e.target.value)}
         type="text"
         name="full"
         id="full"
-        // required={true}
+        required={true}
       />
       <button type="submit">Create Short URL</button>
     </form>

@@ -37,3 +37,9 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.create-short-form .error {
+    color: red;
+    font-size: 12pt;
+  }
+  
