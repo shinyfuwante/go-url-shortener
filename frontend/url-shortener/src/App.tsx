@@ -18,6 +18,7 @@ function App() {
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [submittedShort, setSubmittedShort] = useState<shortUrl>();
   let submitForm;
 
@@ -27,12 +28,14 @@ function App() {
     setShortUrls(await json.data.data);
   };
   const createNewShortUrl = async (short: shortUrl) => {
+    setLoading(true);
     const response = await fetch(backendUrl + "short_urls/", {
       method: "POST",
       mode: "cors",
       body: JSON.stringify(short),
     });
     setSuccess(response.status == 201);
+    setLoading(false);
   };
   useEffect(() => {
     fetchAllShortUrls();
@@ -41,8 +44,10 @@ function App() {
   if (submitted) {
     if (success) {
       submitForm = <SubmittedShort submittedShort={submittedShort!}></SubmittedShort>;
+    } else if (loading) {
+      submitForm = "Creating shortened url...";
     } else {
-      submitForm = "Something went wrong with your shortened url. Please try again."
+      submitForm = "Something went wrong with your shortened url. Please try again.";
     }
   } else {
     submitForm = (
