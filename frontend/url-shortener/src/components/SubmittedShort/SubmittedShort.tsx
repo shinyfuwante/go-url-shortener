@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { shortUrl } from "../../App";
-import "./SubmittedShort.css"
+import "./SubmittedShort.css";
 interface SubmittedShortProps {
   submittedShort: shortUrl;
 }
@@ -16,7 +16,10 @@ export const SubmittedShort: React.FC<SubmittedShortProps> = ({
   };
   return (
     <div className="submitted-short-container">
-      <a href={constructedUrl}>{constructedUrl}</a>
+      <span>
+        {"Your shortened url is:  "}
+        <a href={constructedUrl}>{constructedUrl}</a>
+      </span>
       {copied ? (
         <div>Copied to Clipboard!</div>
       ) : (
