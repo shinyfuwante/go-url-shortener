@@ -1,7 +1,7 @@
 .top-short-url-container {
   width: 100%;
   table-layout: fixed;
-  /* border-collapse: collapse; */
+  overflow: auto;
   margin-top: 30px;
   padding: 10px;
   background-color: var(--background-color);
@@ -15,11 +15,10 @@
   padding: 10px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
 }
 
 .top-short-url-container th {
-  background-color: var(--main-app-background-color);
   font-weight: bold;
 }
 
@@ -33,17 +32,15 @@
   outline: 1px solid var(--background-color);
 }
 .top-short-url-container .data-row {
-  outline: 1px solid var(--background-color);
   margin-bottom: -1px;
-  background-color: var(--main-app-background-color);
 }
 
 .times_clicked {
-  width: 15%;
+  width: 25%;
 }
 
 .full_urls {
-  width: 55%;
+  width: 50%;
 }
 
 .short_urls {
