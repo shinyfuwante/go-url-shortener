@@ -42,9 +42,11 @@ func CreateShortUrl() gin.HandlerFunc {
 			{Key: "description", Value: newShortUrl.Description},
 		}}}
 		d, err := shortCollection.Find(ctx, filter)
-		if d != nil {
-			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Shortened URL already exists!", Data: map[string]interface{}{"data": ""}})
-			return
+		if err != nil {
+			if err != mongo.ErrNoDocuments {
+				c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Shortened URL already exists!", Data: map[string]interface{}{"data": d.Current}})
+				return
+			}
 		}
 		result, err := shortCollection.UpdateOne(ctx, filter, update, opts)
 		if err != nil {

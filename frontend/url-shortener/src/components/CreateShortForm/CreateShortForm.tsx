@@ -15,6 +15,7 @@ interface CreateShortFormProps {
 export const CreateShortForm: React.FC<CreateShortFormProps> = ({
   setSubmitted,
   setSubmittedShort,
+  postNewShortUrl
 }) => {
   const [currShort, setCurrShort] = useState("");
   const [currFull, setCurrFull] = useState("");
@@ -53,11 +54,11 @@ export const CreateShortForm: React.FC<CreateShortFormProps> = ({
       return;
     } 
     if (currShort == "") {
-      setCurrShort(nanoid(10));
-      newShort.short = currShort;
+      newShort.short = nanoid(10);
     }
     console.log(newShort);
     setSubmittedShort({ ...newShort });
+    postNewShortUrl(newShort);
     setCurrShort("");
     setSubmitted(true);
   };
