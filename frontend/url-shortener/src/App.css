@@ -49,12 +49,17 @@ body {
 }
 
 /* Container for main content */
-.main-short-app {
+.main-short-app{
   max-width: 80%;
   margin-top: 20px;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+}
+
+.main-short-app > * {
+  width: 100%;
 }
 
 .footer {

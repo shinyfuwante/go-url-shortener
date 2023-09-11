@@ -1,6 +1,9 @@
 .top-short-url-container {
+  width: 100%;
+  table-layout: fixed;
+  /* border-collapse: collapse; */
   margin-top: 30px;
-  padding: 20px;
+  padding: 10px;
   background-color: var(--background-color);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -10,6 +13,9 @@
 .top-short-url-container th,
 .top-short-url-container td {
   padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 .top-short-url-container th {
@@ -30,4 +36,16 @@
   outline: 1px solid var(--background-color);
   margin-bottom: -1px;
   background-color: var(--main-app-background-color);
+}
+
+.times_clicked {
+  width: 15%;
+}
+
+.full_urls {
+  width: 55%;
+}
+
+.short_urls {
+  width: 25%;
 }

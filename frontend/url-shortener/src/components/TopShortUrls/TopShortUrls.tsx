@@ -10,6 +10,11 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
   const backendUrl = "http://localhost:8080";
   return (
     <table aria-label="Top Urls" className="top-short-url-container">
+      <colgroup>
+        <col className="short_urls"></col>
+        <col className="full_urls"></col>
+        <col className="times_clicked"></col>
+      </colgroup>
       <thead>
         <tr>
           <th colSpan={3} className="top-short-url-title">
@@ -25,13 +30,13 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
       <tbody>
         {shortUrls.map((short) => (
           <tr className="data-row" key={short.id}>
-            <td>
+            <td className="short_urls">
               <a href={`${backendUrl}/${short.short}`}>{short.short}</a>
             </td>
-            <td>
+            <td className="full_urls">
               <a href={short.full_url}>{short.full_url}</a>
             </td>
-            <td>{short.num_clicked}</td>
+            <td className="times_clicked">{short.num_clicked}</td>
           </tr>
         ))}
       </tbody>
