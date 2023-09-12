@@ -1,5 +1,5 @@
 import React from "react";
-import { shortUrl } from "../../App";
+import { shortUrl, backendUrl } from "../../App";
 import "./TopShortUrl.css";
 
 interface TopShortUrlsProps {
@@ -7,7 +7,6 @@ interface TopShortUrlsProps {
 }
 
 export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
-  const backendUrl = "http://localhost:8080";
   return (
     <table aria-label="Top Urls" className="top-short-url-container">
       <colgroup>
@@ -31,7 +30,7 @@ export const TopShortUrls: React.FC<TopShortUrlsProps> = ({ shortUrls }) => {
         {shortUrls.map((short) => (
           <tr className="data-row" key={short.id}>
             <td className="short_urls">
-              <a href={`${backendUrl}/${short.short}`}>{short.short}</a>
+              <a href={`${backendUrl}/${short.short}`}>{"/"+short.short+"/"}</a>
             </td>
             <td className="full_urls">
               <a href={short.full_url}>{short.full_url}</a>

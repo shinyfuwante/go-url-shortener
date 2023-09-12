@@ -13,8 +13,9 @@ export type shortUrl = {
   description?: string;
 };
 
+export const backendUrl = "http://localhost:8080/";
+
 function App() {
-  const backendUrl = "http://localhost:8080/";
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);

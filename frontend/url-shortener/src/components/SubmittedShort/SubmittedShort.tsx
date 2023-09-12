@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { shortUrl } from "../../App";
+import { shortUrl, backendUrl } from "../../App";
 import "./SubmittedShort.css";
 interface SubmittedShortProps {
   submittedShort: shortUrl;
@@ -7,7 +7,6 @@ interface SubmittedShortProps {
 export const SubmittedShort: React.FC<SubmittedShortProps> = ({
   submittedShort,
 }) => {
-  const backendUrl = "http://localhost:8080";
   const constructedUrl = `${backendUrl}/${submittedShort.short}`;
   const [copied, setCopied] = useState<boolean>(false);
   const copyToClipboard = () => {
