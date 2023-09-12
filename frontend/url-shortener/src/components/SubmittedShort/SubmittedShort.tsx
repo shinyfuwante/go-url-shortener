@@ -7,7 +7,7 @@ interface SubmittedShortProps {
 export const SubmittedShort: React.FC<SubmittedShortProps> = ({
   submittedShort,
 }) => {
-  const constructedUrl = `${backendUrl}/${submittedShort.short}`;
+  const constructedUrl = `${backendUrl}${submittedShort.short}`;
   const [copied, setCopied] = useState<boolean>(false);
   const copyToClipboard = () => {
     navigator.clipboard.writeText(constructedUrl);
