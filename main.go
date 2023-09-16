@@ -14,5 +14,5 @@ func main() {
 	configs.ConnectToMongo()
 	router.Use(cors.New(configs.ConfigCors()))
 	routes.ShortURLRoute(router)
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 }
