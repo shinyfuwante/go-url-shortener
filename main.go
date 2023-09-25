@@ -13,7 +13,7 @@ func main() {
 	router := gin.Default()
 
 	configs.ConnectToMongo()
-	router.Use(cors.New(configs.ConfigCors()))
+	router.Use(cors.Default())
 	routes.ShortURLRoute(router)
 	router.Run("0.0.0.0:" + os.Getenv("PORT"))
 }
