@@ -3,6 +3,7 @@ package main
 import (
 	"api/url-shortener/configs"
 	"api/url-shortener/routes"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -14,5 +15,5 @@ func main() {
 	configs.ConnectToMongo()
 	router.Use(cors.New(configs.ConfigCors()))
 	routes.ShortURLRoute(router)
-	router.Run("0.0.0.0:8080")
+	router.Run("0.0.0.0:" + os.Getenv("PORT"))
 }
