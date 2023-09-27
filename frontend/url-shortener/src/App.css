@@ -13,9 +13,11 @@ button {
 }
 
 :root {
-  --background-color: #524f66;
-  --foreground-color: #f2f2f2;
-  --header--footer-color: #524f66;
+  --background-color: #F4F3F6;
+  /* --background-color: #524f66; */
+  --foreground-color: #524f66;
+  /* --foreground-color: #f2f2f2; */
+  --header--footer-color: #F4F3F6;
   --main-app-background-color: #736f93;
 }
 body {
