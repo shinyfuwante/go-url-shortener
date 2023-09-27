@@ -12,7 +12,7 @@ export default function RedirectUrl() {
     const data = await fetchFromBE();
     console.log(data.data.fullUrl);
     window.location.href = data.data.fullUrl;
-  }
+  };
   useEffect(() => {
     redirect();
   });
