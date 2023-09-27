@@ -13,7 +13,7 @@ export type shortUrl = {
   description?: string;
 };
 
-export const backendUrl = "http://127.0.0.1:8080/";
+export const backendUrl = "https://metamon.dev/";
 
 function App() {
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
