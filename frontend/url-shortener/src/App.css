@@ -50,7 +50,7 @@ body {
 
 /* Container for main content */
 .main-short-app{
-  max-width: 80%;
+  max-width: 30%;
   margin-top: 20px;
   padding: 20px;
   display: flex;
@@ -97,3 +97,5 @@ body {
   vertical-align: middle;
   margin-right: 8px;
 }
+
+/* @media  */
