@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "serve build -s -n -L -p $PORT"
+    "start": "vite build && serve dist -s -n -L -p 8080"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
