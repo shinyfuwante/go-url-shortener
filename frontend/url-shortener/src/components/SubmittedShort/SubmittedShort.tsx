@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { shortUrl, backendUrl } from "../../App";
+import { shortUrl, domain } from "../../App";
 import "./SubmittedShort.css";
 interface SubmittedShortProps {
   submittedShort: shortUrl;
@@ -7,7 +7,7 @@ interface SubmittedShortProps {
 export const SubmittedShort: React.FC<SubmittedShortProps> = ({
   submittedShort,
 }) => {
-  const constructedUrl = `${backendUrl}${submittedShort.short}`;
+  const constructedUrl = `${domain}${submittedShort.short}`;
   const [copied, setCopied] = useState<boolean>(false);
   const copyToClipboard = () => {
     navigator.clipboard.writeText(constructedUrl);

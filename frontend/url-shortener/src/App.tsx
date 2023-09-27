@@ -11,8 +11,16 @@ export type shortUrl = {
   num_clicked?: number;
   description?: string;
 };
-
+export type backendResponse = {
+  status: number,
+  message: string,
+  data: {
+    data: object,
+    fullUrl: string
+  }
+}
 export const backendUrl = "https://go-url-shortener-production.up.railway.app/";
+export const domain = "https://metamon.dev/";
 
 function App() {
   return (

@@ -3,6 +3,7 @@ import { CreateShortForm } from "../CreateShortForm";
 import { TopShortUrls } from "../TopShortUrls";
 import { SubmittedShort } from "../SubmittedShort";
 import { FaGithub } from "react-icons/fa";
+import { backendUrl } from "../../App";
 
 export type shortUrl = {
   id?: number;
@@ -11,8 +12,6 @@ export type shortUrl = {
   num_clicked?: number;
   description?: string;
 };
-
-export const backendUrl = "https://go-url-shortener-production.up.railway.app/";
 
 function App() {
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
