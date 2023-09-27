@@ -13,7 +13,7 @@ export type shortUrl = {
   description?: string;
 };
 
-export const backendUrl = "https://metamon.dev/";
+export const backendUrl = "https://go-url-shortener-production.up.railway.app/";
 
 function App() {
   const [shortUrls, setShortUrls] = useState<shortUrl[]>([]);
