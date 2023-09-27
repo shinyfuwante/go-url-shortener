@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { backendUrl } from "../../App";
@@ -10,6 +9,6 @@ export default function RedirectUrl() {
   };
   useEffect(() => {
     redirect();
-  }, [short]);
+  });
   return <div>Redirecting...</div>;
 }
