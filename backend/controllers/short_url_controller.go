@@ -72,7 +72,7 @@ func GetAShortUrl() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Could not find desired short url", Data: map[string]interface{}{"data": err.Error()}})
 			return
 		}
-		c.Redirect(http.StatusMovedPermanently, shortUrl.FullURL)
+		// c.Redirect(http.StatusMovedPermanently, shortUrl.FullURL)
 
 		shortUrl.NumClicked++
 		// update := bson.D{{Key: "$set", Value: bson.D{{Key: "num_clicked", Value: shortUrl.NumClicked}}}}
@@ -83,7 +83,7 @@ func GetAShortUrl() gin.HandlerFunc {
 			c.JSON(http.StatusInternalServerError, responses.ShortURLResponse{Status: http.StatusInternalServerError, Message: "Error when trying to update", Data: map[string]interface{}{"data": err.Error()}})
 			return
 		}
-		c.JSON(http.StatusOK, responses.ShortURLResponse{Status: http.StatusOK, Message: "Success", Data: map[string]interface{}{"data": result}})
+		c.JSON(http.StatusOK, responses.ShortURLResponse{Status: http.StatusOK, Message: "Success", Data: map[string]interface{}{"data": result, "fullUrl": shortUrl.FullURL}})
 	}
 }
 
