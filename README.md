@@ -1,4 +1,6 @@
+
 # metamon.dev
+https://metamon.dev/
 This is a URL shortener made with Gin &amp; Gonic on the backend, with React and Typescript on the front end.
 Both the front end and back end are hosted as separate projects on Railway. 
 
